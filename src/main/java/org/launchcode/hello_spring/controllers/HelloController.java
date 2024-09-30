@@ -58,4 +58,21 @@ public class HelloController {
         return "Hello, " + name + "!";
     }
 
+
+
+    /**** Forms Examples ****/
+    @GetMapping("form")
+    @ResponseBody
+    public String helloForm() {
+        return "<html>" +
+                "<body>" +
+                "<form action='hello'>" +                       // Submits a request to /hello
+                "<input type='text' name='name'>" +
+                "<input type='submit' value='Greet me!'>" +
+                "</form>" +
+                "</body>" +
+                "</html>";
+    }
+
+
 }
