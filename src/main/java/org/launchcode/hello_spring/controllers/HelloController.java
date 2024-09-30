@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@ResponseBody
 public class HelloController {
 
     // Handles request at path /hello
@@ -17,7 +18,7 @@ public class HelloController {
 
     // Handles request at path /goodbye
     @GetMapping("goodbye")                                     // Tells SpringBoot that this method will ONLY accept GET requests
-    @ResponseBody                                              // Tells SpringBoot that this method will return a plain text response
+//    @ResponseBody                                              // Tells SpringBoot that this method will return a plain text response
     public String goodbye() {
         return "GoodBye, Spring!";
     }
@@ -33,7 +34,6 @@ public class HelloController {
 
     // Responds to GET and POST requests at /hello
     @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST}, value="hello")
-    @ResponseBody
     public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
@@ -45,14 +45,12 @@ public class HelloController {
 
     // Handles request of the form /hello?name=LaunchCode
 //    @GetMapping ("hello")
-//    @ResponseBody
 //    public String helloWithQueryParam(@RequestParam String name) {
 //        return "Hello, " + name + "!";
 //    }
 
     // Handles request of the form /launchcode?coder=LaunchCode
     @GetMapping ("launchcode")
-    @ResponseBody
     public String launchcodeWithQueryParam(@RequestParam String coder) {
         return "Hello, " + coder + " is a student at LaunchCode!";
     }
@@ -63,7 +61,6 @@ public class HelloController {
 
     // Handles request od the form /hello/LaunchCode
     @GetMapping("hello/{name}")
-    @ResponseBody
     public String helloWithPathParam(@PathVariable String name) {
         return "Hello, " + name + "!";
     }
@@ -74,7 +71,6 @@ public class HelloController {
     /**** Forms Examples ****/
 
     @GetMapping("form")
-    @ResponseBody
     public String helloForm() {
         return "<html>" +
                 "<body>" +
