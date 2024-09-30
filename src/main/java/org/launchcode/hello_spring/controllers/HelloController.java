@@ -61,6 +61,8 @@ public class HelloController {
 
 
     /**** Forms Examples ****/
+
+    // Uses Default GET request
     @GetMapping("form")
     @ResponseBody
     public String helloForm() {
