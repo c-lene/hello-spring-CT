@@ -23,22 +23,32 @@ public class HelloController {
     }
 
 
-    // responds to get and post requests at /hellogoodbye
+
+    /**** @RequestMapping Example ****/
+    // Responds to GET and POST requests at /hellogoodbye
     @RequestMapping (value = "hellogoodbye", method = {RequestMethod.GET, RequestMethod.POST})
     public String hellogoodbye() {
         return "Hello & Goodbye!";
     }
+
+    // Responds to GET and POST requests at /hello
+    @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST}, value="hello")
+    @ResponseBody
+    public String helloWithQueryParam(@RequestParam String name) {
+        return "Hello, " + name + "!";
+    }
+
 
 
 
     /**** @RequestParam Examples ****/
 
     // Handles request of the form /hello?name=LaunchCode
-    @GetMapping ("hello")
-    @ResponseBody
-    public String helloWithQueryParam(@RequestParam String name) {
-        return "Hello, " + name + "!";
-    }
+//    @GetMapping ("hello")
+//    @ResponseBody
+//    public String helloWithQueryParam(@RequestParam String name) {
+//        return "Hello, " + name + "!";
+//    }
 
     // Handles request of the form /launchcode?coder=LaunchCode
     @GetMapping ("launchcode")
@@ -60,15 +70,16 @@ public class HelloController {
 
 
 
+
     /**** Forms Examples ****/
 
-    // Uses Default GET request
     @GetMapping("form")
     @ResponseBody
     public String helloForm() {
         return "<html>" +
                 "<body>" +
-                "<form action='hello'>" +                       // Submits a request to /hello
+//                "<form action='hello'>" +                       // Submits a GET request to /hello - Uses Default GET request due to no method specified
+                "<form action='hello' method='post'?>" +           // Submits a POST request to /hello
                 "<input type='text' name='name'>" +
                 "<input type='submit' value='Greet me!'>" +
                 "</form>" +
