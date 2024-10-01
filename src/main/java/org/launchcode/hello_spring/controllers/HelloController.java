@@ -33,8 +33,8 @@ public class HelloController {
         return "Hello & Goodbye!";
     }
 
-    // Responds to GET and POST requests at /hello
-    @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST})
+    // Responds to GET and POST requests at /hello/hello
+    @RequestMapping (value = "hello", method = {RequestMethod.GET, RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
@@ -76,13 +76,59 @@ public class HelloController {
     public String helloForm() {
         return "<html>" +
                 "<body>" +
-//                "<form action='hello'>" +                        // Submits a GET request to /hello - Uses Default GET request due to no method specified
-                "<form action='hello' method='post'?>" +           // Submits a POST request to /hello
+//                "<form action='hello'>" +                             // Submits a GET request to /hello - Uses Default GET request due to no method specified
+//                "<form action='hello' method='post'?>" +              // Submits a POST request to /hello
+                "<form action='helloPost' method='post'?>" +            // Edited the existing form to be identified at "helloPost"
                 "<input type='text' name='name'>" +
+                "<select name='language' id='language-select'>" +       // Added Drop down Select menu to select greetings in various language
+                "<option value='english'>English</option>" +
+                "<option value='french'>French</option>" +
+                "<option value='viet'>Viet</option>" +
+                "<option value='italian'>Italian</option>" +
+                "<option value='mandarin'>Mandarin</option>" +
+                "</select>" +
                 "<input type='submit' value='Greet me!'>" +
                 "</form>" +
                 "</body>" +
                 "</html>";
+    }
+
+
+
+    // Responds to POST requests submitted from /hello/form - identifies the form by "helloPost"
+    @RequestMapping(value="helloPost", method = RequestMethod.POST)
+    public String helloPost(@RequestParam String name, @RequestParam String language) {
+        if (name == null) {
+            name = "World";
+        }
+
+        // Returns the String from createMessage()
+        return createMessage(name, language);
+    }
+
+
+
+
+    // Prints out Greeting based on selected language from forms "helloPost"
+    public static String createMessage(String name, String language) {
+        String greeting = "";
+
+        if (language.equals("english")) {
+            greeting = "Hello";
+
+        } else if (language.equals("french")) {
+            greeting = "Bonjour";
+
+        } else if (language.equals("viet")) {
+            greeting = "Xin chao";
+
+        } else if (language.equals("italian")) {
+            greeting = "Ciao";
+
+        } else if (language.equals("mandarin")) {
+            greeting = "Ni hao";
+        }
+        return greeting + " " + name + "!";
     }
 
 }
