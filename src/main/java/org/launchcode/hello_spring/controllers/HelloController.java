@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HelloController {
 
-    // Handles request at path /hello
+    // Handles request at path http://localhost:8080/hello
 //    @GetMapping("hello")                                     // Tells SpringBoot that this method will ONLY accept GET requests
 //    @ResponseBody                                   // Tells SpringBoot that this method will return a plain text response
 //    public String hello() {
@@ -15,7 +15,7 @@ public class HelloController {
 //    }
 
 
-    // Handles request at path /goodbye
+    // Handles request at path http://localhost:8080/goodbye
     @GetMapping("goodbye")                                     // Tells SpringBoot that this method will ONLY accept GET requests
     @ResponseBody                                              // Tells SpringBoot that this method will return a plain text response
     public String goodbye() {
@@ -31,7 +31,7 @@ public class HelloController {
         return "Hello & Goodbye!";
     }
 
-    // Responds to GET and POST requests at /hello
+    // Responds to GET and POST requests at http://localhost:8080/hello?name=LaunchCode
     @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST}, value="hello")
     @ResponseBody
     public String helloWithQueryParam(@RequestParam String name) {
@@ -43,7 +43,7 @@ public class HelloController {
 
     /**** @RequestParam Examples ****/
 
-    // Handles request of the form /hello?name=LaunchCode
+    // Handles request of the form http://localhost:8080/hello?name=LaunchCode
 //    @GetMapping ("hello")
 //    @ResponseBody
 //    public String helloWithQueryParam(@RequestParam String name) {
@@ -61,7 +61,7 @@ public class HelloController {
 
     /**** @PathParam Examples ****/
 
-    // Handles request od the form /hello/LaunchCode
+    // Handles request of the form http://localhost:8080/hello/LaunchCode
     @GetMapping("hello/{name}")
     @ResponseBody
     public String helloWithPathParam(@PathVariable String name) {
@@ -86,6 +86,5 @@ public class HelloController {
                 "</body>" +
                 "</html>";
     }
-
 
 }
