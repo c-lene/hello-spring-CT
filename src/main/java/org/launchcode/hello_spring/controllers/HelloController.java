@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HelloController {
 
+    // Responds to GET request at http://localhost:8080/goodbye
+    @GetMapping("goodbye")
+    @ResponseBody
+    public String goodbye() {
+        return "Goodbye, Spring!";
+    }
+
 
     // Responds to GET and POST requests at http://localhost:8080/hello?name=LaunchCode
     // Handles request of the form
