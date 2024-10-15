@@ -35,9 +35,11 @@ public class HelloController {
     // Handles request of the form
     // Responds to http://localhost:8080/hello/LaunchCode
     @GetMapping("hello/{name}")
-    @ResponseBody
-    public String helloWithPathParam(@PathVariable String name) {
-        return "Hello, " + name + "!";
+    public String helloWithPathParam(@PathVariable String name, Model model) {
+
+        model.addAttribute("greeting", "Hello, " + name + "!!");
+
+        return "hello";
     }
 
 
