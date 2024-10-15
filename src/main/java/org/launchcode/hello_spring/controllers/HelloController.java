@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class HelloController {
@@ -54,6 +57,7 @@ public class HelloController {
     }
 
 
+
     // CT created - TEST example to answer Check Your Understanding #3
     // Responds to http://localhost:8080/test/name
     @GetMapping("test/{name}")
@@ -62,6 +66,20 @@ public class HelloController {
         model.addAttribute("name", name);
 
         return "test";
+    }
+
+
+    @GetMapping ("hello-names")
+    public String helloNames(Model model) {
+
+        List<String> names = new ArrayList<>();
+        names.add("LaunchCode");
+        names.add("Java");
+        names.add("JavaScript");
+
+        model.addAttribute("names", names);
+
+        return "hello-list";
     }
 
 }
