@@ -19,9 +19,12 @@ public class HelloController {
     // Responds to GET and POST requests at http://localhost:8080/hello?name=LaunchCode
     // Handles request of the form
     @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST}, value="hello")
-    @ResponseBody
-    public String helloWithQueryParam(@RequestParam String name) {
-        return "Hello, " + name + "!";
+    public String helloWithQueryParam(@RequestParam String name, Model model) {
+
+        String theGreeting = "Hello, " + name + "!";
+        model.addAttribute("greeting", theGreeting);
+
+        return "hello";
     }
 
 
