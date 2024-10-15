@@ -1,6 +1,7 @@
 package org.launchcode.hello_spring.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -45,6 +46,17 @@ public class HelloController {
     @GetMapping("form")
     public String helloForm() {
         return "form";
+    }
+
+
+    // CT created - TEST example to answer Check Your Understanding #3
+    // Responds to http://localhost:8080/test/name
+    @GetMapping("test/{name}")
+    public String testNamePrice(@PathVariable String name, Model model) {
+
+        model.addAttribute("name", name);
+
+        return "test";
     }
 
 }
