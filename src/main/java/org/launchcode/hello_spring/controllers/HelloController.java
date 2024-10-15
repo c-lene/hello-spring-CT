@@ -34,6 +34,7 @@ public class HelloController {
 
     /**** Forms Examples ****/
 
+    // Responds to http://localhost:8080/form
     @GetMapping("form")
     public String helloForm() {
         return "form";
