@@ -7,29 +7,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HelloController {
 
-    // Handles request at path http://localhost:8080/hello
-//    @GetMapping("hello")                                     // Tells SpringBoot that this method will ONLY accept GET requests
-//    @ResponseBody                                   // Tells SpringBoot that this method will return a plain text response
-//    public String hello() {
-//        return "Hello, Spring!";
-//    }
-
-
-    // Handles request at path http://localhost:8080/goodbye
-    @GetMapping("goodbye")                                     // Tells SpringBoot that this method will ONLY accept GET requests
-    @ResponseBody                                              // Tells SpringBoot that this method will return a plain text response
-    public String goodbye() {
-        return "GoodBye, Spring!";
-    }
-
-
-
-    /**** @RequestMapping Example ****/
-    // Responds to GET and POST requests at /hellogoodbye
-//    @RequestMapping (value = "hellogoodbye", method = {RequestMethod.GET, RequestMethod.POST})
-//    public String hellogoodbye() {
-//        return "Hello & Goodbye!";
-//    }
 
     // Responds to GET and POST requests at http://localhost:8080/hello?name=LaunchCode
     // Handles request of the form
@@ -42,28 +19,10 @@ public class HelloController {
 
 
 
-    /**** @RequestParam Examples ****/
-
-    // Handles request of the form http://localhost:8080/hello?name=LaunchCode
-//    @GetMapping ("hello")
-//    @ResponseBody
-//    public String helloWithQueryParam(@RequestParam String name) {
-//        return "Hello, " + name + "!";
-//    }
-
-
-    // Handles request of the form /launchcode?coder=LaunchCode
-//    @GetMapping ("launchcode")
-//    @ResponseBody
-//    public String launchcodeWithQueryParam(@RequestParam String coder) {
-//        return "Hello, " + coder + " is a student at LaunchCode!";
-//    }
-
-
-
     /**** @PathParam Examples ****/
 
-    // Handles request of the form http://localhost:8080/hello/LaunchCode
+    // Handles request of the form
+    // Responds to http://localhost:8080/hello/LaunchCode
     @GetMapping("hello/{name}")
     @ResponseBody
     public String helloWithPathParam(@PathVariable String name) {
@@ -78,15 +37,15 @@ public class HelloController {
     @GetMapping("form")
     @ResponseBody
     public String helloForm() {
-        return "<html>" +
+        String html = "<html>" +
                 "<body>" +
-//                "<form action='hello'>" +                       // Submits a GET request to /hello - Uses Default GET request due to no method specified
-                "<form action = 'hello' method = 'post'>" +           // Submits a POST request to /hello
-                "<input type = 'text' name = 'name'>" +
-                "<input type = 'submit' value = 'Greet me!'>" +
+                "<form action = '/hello' method = 'post'>" +           // Submits a POST request to /hello
+                "<input type = 'text' name = 'name' />" +
+                "<input type = 'submit' value = 'Greet me!' />" +
                 "</form>" +
                 "</body>" +
                 "</html>";
+        return html;
     }
 
 }
