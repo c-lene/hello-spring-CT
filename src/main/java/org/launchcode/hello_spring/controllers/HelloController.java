@@ -26,12 +26,13 @@ public class HelloController {
 
     /**** @RequestMapping Example ****/
     // Responds to GET and POST requests at /hellogoodbye
-    @RequestMapping (value = "hellogoodbye", method = {RequestMethod.GET, RequestMethod.POST})
-    public String hellogoodbye() {
-        return "Hello & Goodbye!";
-    }
+//    @RequestMapping (value = "hellogoodbye", method = {RequestMethod.GET, RequestMethod.POST})
+//    public String hellogoodbye() {
+//        return "Hello & Goodbye!";
+//    }
 
     // Responds to GET and POST requests at http://localhost:8080/hello?name=LaunchCode
+    // Handles request of the form
     @RequestMapping (method = {RequestMethod.GET, RequestMethod.POST}, value="hello")
     @ResponseBody
     public String helloWithQueryParam(@RequestParam String name) {
@@ -50,12 +51,13 @@ public class HelloController {
 //        return "Hello, " + name + "!";
 //    }
 
+
     // Handles request of the form /launchcode?coder=LaunchCode
-    @GetMapping ("launchcode")
-    @ResponseBody
-    public String launchcodeWithQueryParam(@RequestParam String coder) {
-        return "Hello, " + coder + " is a student at LaunchCode!";
-    }
+//    @GetMapping ("launchcode")
+//    @ResponseBody
+//    public String launchcodeWithQueryParam(@RequestParam String coder) {
+//        return "Hello, " + coder + " is a student at LaunchCode!";
+//    }
 
 
 
@@ -79,9 +81,9 @@ public class HelloController {
         return "<html>" +
                 "<body>" +
 //                "<form action='hello'>" +                       // Submits a GET request to /hello - Uses Default GET request due to no method specified
-                "<form action='hello' method='post'?>" +           // Submits a POST request to /hello
-                "<input type='text' name='name'>" +
-                "<input type='submit' value='Greet me!'>" +
+                "<form action = 'hello' method = 'post'>" +           // Submits a POST request to /hello
+                "<input type = 'text' name = 'name'>" +
+                "<input type = 'submit' value = 'Greet me!'>" +
                 "</form>" +
                 "</body>" +
                 "</html>";
